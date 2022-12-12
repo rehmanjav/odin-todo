@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+}
+
+* {
+    color: white;
+    font-family: "Helvetica";
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    color: #F1B24A;
+    transform: scale(1.2);
+}
+
+body {
+    display: grid;
+    grid-template-areas: "header header"
+                         "nav main";
+    grid-template-columns: 250px 3.5fr;
+    grid-template-rows: 75px auto;
+}
+
+header {
+    grid-area: header;
+    background-color: #164A41;
+    padding: 20px;
+}
+
+nav {
+    grid-area: nav;
+    background-color: #4D774E;
+    padding: 30px;
+}
+
+main {
+    grid-area: main;
+    background-color: #9DC88D;
+}
+
+header > p {
+    margin: 0px;
+    font-family: "Special Elite";
+    font-size: 2.5rem;
+}
