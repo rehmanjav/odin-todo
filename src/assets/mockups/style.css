@@ -55,3 +55,17 @@ header > p {
     font-family: "Special Elite";
     font-size: 2.5rem;
 }
+
+#btn-add {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    margin-bottom: 0;
+    background-image: url(../images/plus.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+    border: 1px #F1B24A solid;
+    border-radius: 50px;
+}
