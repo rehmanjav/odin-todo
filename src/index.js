@@ -1,8 +1,5 @@
 import './style.css';
 
-const projects = [];
-const notes = [];
-
 class Todo {
     constructor(title, description, dueDate, priority) {
         this.title = title;
@@ -25,6 +22,9 @@ class Note {
     }
 }
 
+const projects = [new Project("Gym"), new Project("Study"), new Project("Work"), new Project("Diet")];
+const notes = [];
+
 function renderIndex() {
     let body = document.querySelector('body');
     
@@ -39,11 +39,7 @@ function renderIndex() {
         <br>
         <button>Week</button>
         <p>Projects</p>
-        <ul>
-            <li><button>Gym</button></li>
-            <li><button>Study</button></li>
-            <li><button>Work</button></li>
-        </ul>
+        <ul class="ul-projects"></ul>
         <button>Notes</button>
         <button id="btn-add"></button>
     </nav>
@@ -60,6 +56,16 @@ function renderIndex() {
         </div>
     </div>
     `;
+
+    let divProjects = document.querySelector(".ul-projects");
+
+    for (let project of projects) {
+        let li = document.createElement("li");
+        li.innerHTML = `
+        <button>${project.name}</button>
+        `;
+        divProjects.appendChild(li);
+    }
 
     // ADD MODAL
     // Get the modal
