@@ -105,6 +105,27 @@ function renderIndex() {
     }
 }
 
+function renderAddTodo() {
+    let rightDiv = document.querySelector(".add-right");
+
+    let addTodo = document.createElement("div");
+    addTodo.classList.add("add-right-todo");
+
+    addTodo.innerHTML = `
+    
+    `;
+
+    rightDiv.appendChild(addTodo);
+}
+
+function renderAddNote() {
+
+}
+
+function renderAddProject() {
+
+}
+
 // MAIN LOOP
 
 

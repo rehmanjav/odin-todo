@@ -116,10 +116,6 @@ header > p {
     flex-direction: column;
 }
 
-.add-right {
-
-}
-
 .add-container {
     display: flex;
 }
