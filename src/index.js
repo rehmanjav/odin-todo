@@ -51,8 +51,18 @@ function renderIndex() {
     <div class="modal-add">
         <div class="modal-add-content">
             <span class="close">&times;</span>
-            <p>hello</p>
-            <button class="close"></button>
+            <p>ADD NEW</p>
+            <div class="add-container">
+                <div class="add-left">
+                    <button>TODO</button>
+                    <button>NOTE</button>
+                    <button>PROJECT</button>
+                </div>
+                <div class="add-right">
+
+                </div>
+            </div>
+            
         </div>
     </div>
     `;

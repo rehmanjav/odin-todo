@@ -89,7 +89,7 @@ header > p {
   
   /* Modal Content */
   .modal-add-content {
-    background-color: #fefefe;
+    background-color: #4D774E;
     margin: auto;
     padding: 20px;
     border: 10px solid #888;
@@ -102,7 +102,7 @@ header > p {
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+  } 
   
   .close:hover,
   .close:focus {
@@ -110,3 +110,16 @@ header > p {
     text-decoration: none;
     cursor: pointer;
   }
+
+.add-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-right {
+
+}
+
+.add-container {
+    display: flex;
+}
