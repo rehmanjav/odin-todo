@@ -54,9 +54,9 @@ function renderIndex() {
             <p>ADD NEW</p>
             <div class="add-container">
                 <div class="add-left">
-                    <button>TODO</button>
-                    <button>NOTE</button>
-                    <button>PROJECT</button>
+                    <button class="btn-todo">TODO</button>
+                    <button class="btn-note">NOTE</button>
+                    <button class="btn-project">PROJECT</button>
                 </div>
                 <div class="add-right">
 
@@ -103,10 +103,26 @@ function renderIndex() {
         modal.style.display = "none";
     }
     }
+
+    // Add event listeners to add new XXX buttons
+    let btnTodo = document.querySelector("btn-todo");
+    let btnProject = document.querySelector("btn-project");
+    let btnNote = document.querySelector("btn-note");
+
+    btnTodo.addEventListener("click", () => {
+        renderAddTodo();
+    });
+    btnProject.addEventListener("click", () => {
+        renderAddProject();
+    });
+    btnNote.addEventListener("click", () => {
+        renderAddNote();
+    });
 }
 
 function renderAddTodo() {
     let rightDiv = document.querySelector(".add-right");
+    rightDiv.innerHTML = "";
 
     let addTodo = document.createElement("div");
     addTodo.classList.add("add-right-todo");
@@ -119,11 +135,31 @@ function renderAddTodo() {
 }
 
 function renderAddNote() {
+    let rightDiv = document.querySelector(".add-right");
+    rightDiv.innerHTML = "";
 
+    let addNote = document.createElement("div");
+    addNote.classList.add("add-right-note");
+
+    addNote.innerHTML = `
+    
+    `;
+
+    rightDiv.appendChild(addNote);
 }
 
 function renderAddProject() {
+    let rightDiv = document.querySelector(".add-right");
+    rightDiv.innerHTML = "";
 
+    let addProject = document.createElement("div");
+    addProject.classList.add("add-right-project");
+
+    addProject.innerHTML = `
+    
+    `;
+
+    rightDiv.appendChild(addProject);
 }
 
 // MAIN LOOP
