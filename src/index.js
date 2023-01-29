@@ -67,6 +67,8 @@ function renderIndex() {
     </div>
     `;
 
+    renderAddTodo();
+
     let divProjects = document.querySelector(".ul-projects");
 
     for (let project of projects) {
@@ -105,17 +107,20 @@ function renderIndex() {
     }
 
     // Add event listeners to add new XXX buttons
-    let btnTodo = document.querySelector("btn-todo");
-    let btnProject = document.querySelector("btn-project");
-    let btnNote = document.querySelector("btn-note");
+    let btnTodo = document.querySelector(".btn-todo");
+    let btnProject = document.querySelector(".btn-project");
+    let btnNote = document.querySelector(".btn-note");
 
     btnTodo.addEventListener("click", () => {
+        console.log("clicked");
         renderAddTodo();
     });
     btnProject.addEventListener("click", () => {
+        console.log("clicked");
         renderAddProject();
     });
     btnNote.addEventListener("click", () => {
+        console.log("clicked");
         renderAddNote();
     });
 }
@@ -125,13 +130,31 @@ function renderAddTodo() {
     rightDiv.innerHTML = "";
 
     let addTodo = document.createElement("div");
-    addTodo.classList.add("add-right-todo");
+    // addTodo.classList.add("add-right-todo");
 
     addTodo.innerHTML = `
-    
+    <div class="add-right-todo">
+  <form action="" onsubmit="return false">
+    <label for="">Title: <input type="text"></label>
+    <label for="">Details: <input type="text"></label>
+    <label for="">Project: <select name="" id=""></select></label>
+    <label for="">Due date: <input type="date"></label>
+    <label for="">Priority: 
+      <label for=""><input type="radio" name="priority" value="high"> High </label>
+      <label for=""><input type="radio" name="priority" value="medium"> Medium </label>
+      <label for=""><input type="radio" name="priority" value="low"> Low </label>
+      </label>
+      <input type="submit" value="+ Todo" class="btn-add-todo">
+  </form>
+</div>
     `;
 
     rightDiv.appendChild(addTodo);
+
+    let btnAddTodo = document.querySelector(".btn-add-todo");
+    btnAddTodo.addEventListener("click", () => {
+        console.log("clicked");
+    });
 }
 
 function renderAddNote() {
@@ -139,13 +162,24 @@ function renderAddNote() {
     rightDiv.innerHTML = "";
 
     let addNote = document.createElement("div");
-    addNote.classList.add("add-right-note");
+    // addNote.classList.add("add-right-note");
 
     addNote.innerHTML = `
-    
+    <div class="add-right-note">
+  <form action="" onsubmit="return false">
+    <label for="">Title: <input type="text"></label>
+    <label for="">Details: <input type="text"></label>
+    <input type="submit" value="+ Note" class="btn-add-note">
+  </form>
+</div>
     `;
 
     rightDiv.appendChild(addNote);
+
+    let btnAddNote = document.querySelector(".btn-add-note");
+    btnAddNote.addEventListener("click", () => {
+        console.log("clicked");
+    });
 }
 
 function renderAddProject() {
@@ -153,13 +187,25 @@ function renderAddProject() {
     rightDiv.innerHTML = "";
 
     let addProject = document.createElement("div");
-    addProject.classList.add("add-right-project");
+    // addProject.classList.add("add-right-project");
 
     addProject.innerHTML = `
-    
+    <div class="add-right-project">
+  <form action="" onsubmit="return false">
+    <label for="">Title: <input type="text"></label>
+    <input type="submit" value="+ Project" class="btn-add-project">
+  </form>
+</div>
     `;
 
     rightDiv.appendChild(addProject);
+
+    let btnAddProject = document.querySelector(".btn-add-project");
+    btnAddProject.addEventListener("click", () => {
+        console.log("clicked");
+    });
+
+    
 }
 
 // MAIN LOOP

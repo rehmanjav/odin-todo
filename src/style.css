@@ -119,3 +119,36 @@ header > p {
 .add-container {
     display: flex;
 }
+
+.add-right-todo > form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+.add-right-project > form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+    
+.add-right-note > form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.add-right {
+    border: black solid 1px;
+    padding-left: 50px;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
