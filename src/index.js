@@ -135,7 +135,7 @@ function renderAddTodo() {
     addTodo.innerHTML = `
     <div class="add-right-todo">
   <form action="" onsubmit="return false">
-    <label for="">Title: <input type="text"></label>
+    <label for="">Title: <input type="text" required></label>
     <label for="">Details: <input type="text"></label>
     <label for="">Project: <select name="" id=""></select></label>
     <label for="">Due date: <input type="date"></label>
@@ -152,7 +152,7 @@ function renderAddTodo() {
     rightDiv.appendChild(addTodo);
 
     let btnAddTodo = document.querySelector(".btn-add-todo");
-    btnAddTodo.addEventListener("click", () => {
+    btnAddTodo.addEventListener("submit", () => {
         console.log("clicked");
     });
 }
@@ -167,7 +167,7 @@ function renderAddNote() {
     addNote.innerHTML = `
     <div class="add-right-note">
   <form action="" onsubmit="return false">
-    <label for="">Title: <input type="text"></label>
+    <label for="">Title: <input type="text" required></label>
     <label for="">Details: <input type="text"></label>
     <input type="submit" value="+ Note" class="btn-add-note">
   </form>
@@ -177,7 +177,7 @@ function renderAddNote() {
     rightDiv.appendChild(addNote);
 
     let btnAddNote = document.querySelector(".btn-add-note");
-    btnAddNote.addEventListener("click", () => {
+    btnAddNote.addEventListener("submit", () => {
         console.log("clicked");
     });
 }
@@ -192,7 +192,7 @@ function renderAddProject() {
     addProject.innerHTML = `
     <div class="add-right-project">
   <form action="" onsubmit="return false">
-    <label for="">Title: <input type="text"></label>
+    <label for="">Title: <input type="text" required></label>
     <input type="submit" value="+ Project" class="btn-add-project">
   </form>
 </div>
@@ -201,7 +201,7 @@ function renderAddProject() {
     rightDiv.appendChild(addProject);
 
     let btnAddProject = document.querySelector(".btn-add-project");
-    btnAddProject.addEventListener("click", () => {
+    btnAddProject.addEventListener("submit", () => {
         console.log("clicked");
     });
 
