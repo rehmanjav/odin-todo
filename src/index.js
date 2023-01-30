@@ -137,8 +137,9 @@ function renderAddTodo() {
   <form action="" onsubmit="return false">
     <label for="">Title: <input type="text" required></label>
     <label for="">Details: <input type="text"></label>
-    <label for="">Project: <select name="" id=""></select></label>
-    <label for="">Due date: <input type="date"></label>
+    <label for="">Project: <select name="" id="">
+    ${generateProjectSelection()}</select></label>
+    <label for="">Due date: <input type="date" required></label>
     <label for="">Priority: 
       <label for=""><input type="radio" name="priority" value="high"> High </label>
       <label for=""><input type="radio" name="priority" value="medium"> Medium </label>
@@ -206,6 +207,15 @@ function renderAddProject() {
     });
 
     
+}
+
+function generateProjectSelection() {
+    let generatedHTML = ``;
+    for (let project of projects) {
+        generatedHTML += `<option value="${project.name}">${project.name}</option>`;
+    }
+
+    return generatedHTML;
 }
 
 // MAIN LOOP
