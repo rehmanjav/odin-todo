@@ -134,17 +134,17 @@ function renderAddTodo() {
 
     addTodo.innerHTML = `
     <div class="add-right-todo">
-  <form action="" onsubmit="return false">
+  <form action="" onsubmit="return false" class="form-todo">
     <label for="">Title: <input type="text" required></label>
     <label for="">Details: <input type="text"></label>
     <label for="">Project: <select name="" id="">
     ${generateProjectSelection()}</select></label>
     <label for="">Due date: <input type="date" required></label>
     <label for="">Priority: 
-      <label for=""><input type="radio" name="priority" value="high"> High </label>
-      <label for=""><input type="radio" name="priority" value="medium"> Medium </label>
+      <label for=""><input type="radio" name="priority" value="high" required> High </label>
+      <label for=""><input type="radio" name="priority" value="medium" checked="checked"> Medium </label>
       <label for=""><input type="radio" name="priority" value="low"> Low </label>
-      </label>
+    </label>
       <input type="submit" value="+ Todo" class="btn-add-todo">
   </form>
 </div>
@@ -152,7 +152,7 @@ function renderAddTodo() {
 
     rightDiv.appendChild(addTodo);
 
-    let btnAddTodo = document.querySelector(".btn-add-todo");
+    let btnAddTodo = document.querySelector(".form-todo");
     btnAddTodo.addEventListener("submit", () => {
         console.log("clicked");
     });
@@ -167,7 +167,7 @@ function renderAddNote() {
 
     addNote.innerHTML = `
     <div class="add-right-note">
-  <form action="" onsubmit="return false">
+  <form action="" onsubmit="return false" class="form-note">
     <label for="">Title: <input type="text" required></label>
     <label for="">Details: <input type="text"></label>
     <input type="submit" value="+ Note" class="btn-add-note">
@@ -177,7 +177,7 @@ function renderAddNote() {
 
     rightDiv.appendChild(addNote);
 
-    let btnAddNote = document.querySelector(".btn-add-note");
+    let btnAddNote = document.querySelector(".form-note");
     btnAddNote.addEventListener("submit", () => {
         console.log("clicked");
     });
@@ -192,7 +192,7 @@ function renderAddProject() {
 
     addProject.innerHTML = `
     <div class="add-right-project">
-  <form action="" onsubmit="return false">
+  <form action="" onsubmit="return false" class="form-project">
     <label for="">Title: <input type="text" required></label>
     <input type="submit" value="+ Project" class="btn-add-project">
   </form>
@@ -201,7 +201,7 @@ function renderAddProject() {
 
     rightDiv.appendChild(addProject);
 
-    let btnAddProject = document.querySelector(".btn-add-project");
+    let btnAddProject = document.querySelector(".form-project");
     btnAddProject.addEventListener("submit", () => {
         console.log("clicked");
     });
