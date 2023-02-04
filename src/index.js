@@ -16,9 +16,10 @@ class Project {
 }
 
 class Note {
-    constructor(title, description) {
+    constructor(title, description, dateCreated) {
         this.title = title;
         this.description = description;
+        this.dateCreated = dateCreated;
     }
 }
 
@@ -135,12 +136,12 @@ function renderAddTodo() {
     addTodo.innerHTML = `
     <div class="add-right-todo">
   <form action="" onsubmit="return false" class="form-todo">
-    <label for="">Title: <input type="text" required></label>
-    <label for="">Details: <input type="text"></label>
-    <label for="">Project: <select name="" id="">
+    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large"></label>
+    <label for="" class="font-size-large">Details: <input type="text" class="black font-size-large"></label>
+    <label for="" class="font-size-large">Project: <select name="" id="" class="black font-size-large">
     ${generateProjectSelection()}</select></label>
-    <label for="">Due date: <input type="date" required></label>
-    <label for="">Priority: 
+    <label for="" class="font-size-large">Due date: <input type="date" required class="black font-size-large"></label>
+    <label for="" class="font-size-large">Priority: 
       <label for=""><input type="radio" name="priority" value="high" required> High </label>
       <label for=""><input type="radio" name="priority" value="medium" checked="checked"> Medium </label>
       <label for=""><input type="radio" name="priority" value="low"> Low </label>
@@ -168,8 +169,8 @@ function renderAddNote() {
     addNote.innerHTML = `
     <div class="add-right-note">
   <form action="" onsubmit="return false" class="form-note">
-    <label for="">Title: <input type="text" required></label>
-    <label for="">Details: <input type="text"></label>
+    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large aNTitle" minlength="3"></label>
+    <label for="" class="font-size-large">Details: <input type="text" class="black font-size-large aNDetails" required minlength="3"></label>
     <input type="submit" value="+ Note" class="btn-add-note">
   </form>
 </div>
@@ -180,6 +181,13 @@ function renderAddNote() {
     let btnAddNote = document.querySelector(".form-note");
     btnAddNote.addEventListener("submit", () => {
         console.log("clicked");
+
+        let title = document.querySelector(".aNTitle");
+        let details = document.querySelector(".aNDetails");
+
+        console.log(`title:${title.value}, details:${details.value}`);
+        notes.push(new Note(title.value, details.value, new Date()));
+        renderAddNote();
     });
 }
 
@@ -193,7 +201,7 @@ function renderAddProject() {
     addProject.innerHTML = `
     <div class="add-right-project">
   <form action="" onsubmit="return false" class="form-project">
-    <label for="">Title: <input type="text" required></label>
+    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large"></label>
     <input type="submit" value="+ Project" class="btn-add-project">
   </form>
 </div>
