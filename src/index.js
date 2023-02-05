@@ -23,8 +23,8 @@ class Note {
     }
 }
 
-const projects = [new Project("Gym"), new Project("Study"), new Project("Work"), new Project("Diet")];
-const notes = [];
+let projects = [new Project("Gym"), new Project("Study"), new Project("Work"), new Project("Diet")];
+let notes = [];
 
 function renderIndex() {
     let body = document.querySelector('body');
