@@ -41,7 +41,7 @@ function renderIndex() {
         <button>Week</button>
         <p>Projects</p>
         <ul class="ul-projects"></ul>
-        <button>Notes</button>
+        <button class="nav-notes">Notes</button>
         <button id="btn-add"></button>
     </nav>
     <main>
@@ -124,6 +124,12 @@ function renderIndex() {
         console.log("clicked");
         renderAddNote();
     });
+
+    // Add listeners to Nav bar
+    let navNotes = document.querySelector(".nav-notes");
+    navNotes.addEventListener("click", () => {
+        renderNotes("recentFirst");
+    });
 }
 
 function renderAddTodo() {
@@ -187,6 +193,7 @@ function renderAddNote() {
 
         console.log(`title:${title.value}, details:${details.value}`);
         notes.push(new Note(title.value, details.value, new Date()));
+        renderNotes("recentFirst");
         renderAddNote();
     });
 }
@@ -217,6 +224,28 @@ function renderAddProject() {
     
 }
 
+function renderNotes(order) {
+    let mainDiv = document.querySelector("main");
+    mainDiv.innerHTML = `
+    <div class="notes-btns"></div>
+    <div class="notes-container"></div>
+
+    `;
+
+    let notesContainer = document.querySelector(".notes-container");
+
+    if (order == "recentFirst") {
+        for (let [index, note] of notes.entries()) {
+            console.log(`${index} ${note}`)
+            notesContainer.prepend(generateNotesCard(note, index));
+        }
+    } else if (order == "oldestFirst") {
+        for (let [index, note] of notes.entries()) {
+            notesContainer.append(generateNotesCard(note, index));
+        }
+    }
+}
+
 function generateProjectSelection() {
     let generatedHTML = ``;
     for (let project of projects) {
@@ -224,6 +253,21 @@ function generateProjectSelection() {
     }
 
     return generatedHTML;
+}
+
+function generateNotesCard(note, index) {
+    let noteCard = document.createElement("div");
+
+    noteCard.innerHTML = `
+    <button>X</button>
+    <p>${note.title}</p>
+    <p>${note.description}</p>
+    `;
+
+    noteCard.classList.add("notes-card");
+    noteCard.dataset.index = index;
+
+    return noteCard;
 }
 
 // MAIN LOOP
