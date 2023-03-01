@@ -244,6 +244,15 @@ function renderNotes(order) {
             notesContainer.append(generateNotesCard(note, index));
         }
     }
+
+    let btnDelete = document.querySelectorAll(".btn-delete-note");
+    btnDelete.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            console.log(e.target.dataset.index);
+            notes.splice(e.target.dataset.index, 1);
+            renderNotes("recentFirst");
+        });
+    });
 }
 
 function generateProjectSelection() {
@@ -259,7 +268,7 @@ function generateNotesCard(note, index) {
     let noteCard = document.createElement("div");
 
     noteCard.innerHTML = `
-    <button>X</button>
+    <button class="btn-delete-note" data-index="${index}">X</button>
     <p>${note.title}</p>
     <p>${note.description}</p>
     `;
