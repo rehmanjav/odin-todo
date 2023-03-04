@@ -10,8 +10,9 @@ class Todo {
 }
 
 class Project {
-    constructor(name) {
+    constructor(name, dateCreated) {
         this.name = name;
+        this.dateCreated = dateCreated;
     }
 }
 
@@ -23,7 +24,7 @@ class Note {
     }
 }
 
-let projects = [new Project("Gym"), new Project("Study"), new Project("Work"), new Project("Diet")];
+let projects = [new Project("Gym", new Date()), new Project("Study", new Date()), new Project("Work", new Date()), new Project("Diet", new Date())];
 let notes = [];
 
 function renderIndex() {
@@ -70,15 +71,7 @@ function renderIndex() {
 
     renderAddTodo();
 
-    let divProjects = document.querySelector(".ul-projects");
-
-    for (let project of projects) {
-        let li = document.createElement("li");
-        li.innerHTML = `
-        <button>${project.name}</button>
-        `;
-        divProjects.appendChild(li);
-    }
+    renderNavProjects();
 
     // ADD MODAL
     // Get the modal
@@ -131,6 +124,20 @@ function renderIndex() {
         renderNotes("recentFirst");
     });
 }
+
+function renderNavProjects() {
+    let divProjects = document.querySelector(".ul-projects");
+
+    divProjects.innerHTML = "";
+
+    for (let project of projects) {
+        let li = document.createElement("li");
+        li.innerHTML = `
+        <button>${project.name}</button>
+        `;
+        divProjects.appendChild(li);
+    }
+};
 
 function renderAddTodo() {
     let rightDiv = document.querySelector(".add-right");
@@ -208,7 +215,7 @@ function renderAddProject() {
     addProject.innerHTML = `
     <div class="add-right-project">
   <form action="" onsubmit="return false" class="form-project">
-    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large"></label>
+    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large aPTitle"></label>
     <input type="submit" value="+ Project" class="btn-add-project">
   </form>
 </div>
@@ -219,6 +226,12 @@ function renderAddProject() {
     let btnAddProject = document.querySelector(".form-project");
     btnAddProject.addEventListener("submit", () => {
         console.log("clicked");
+
+        let title = document.querySelector(".aPTitle");
+
+        projects.push(new Project(title.value, new Date()));
+        renderNavProjects();
+        renderAddProject();
     });
 
     
