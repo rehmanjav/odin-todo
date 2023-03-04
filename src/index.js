@@ -1,11 +1,12 @@
 import './style.css';
 
 class Todo {
-    constructor(title, description, dueDate, priority) {
+    constructor(title, description, dueDate, priority, dateCreated) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.dateCreated = dateCreated;
     }
 }
 
@@ -149,11 +150,11 @@ function renderAddTodo() {
     addTodo.innerHTML = `
     <div class="add-right-todo">
   <form action="" onsubmit="return false" class="form-todo">
-    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large"></label>
-    <label for="" class="font-size-large">Details: <input type="text" class="black font-size-large"></label>
-    <label for="" class="font-size-large">Project: <select name="" id="" class="black font-size-large">
+    <label for="" class="font-size-large">Title: <input type="text" required class="black font-size-large aTTitle"></label>
+    <label for="" class="font-size-large">Details: <input type="text" class="black font-size-large aTDetails"></label>
+    <label for="" class="font-size-large">Project: <select name="" id="" class="black font-size-large aTProject">
     ${generateProjectSelection()}</select></label>
-    <label for="" class="font-size-large">Due date: <input type="date" required class="black font-size-large"></label>
+    <label for="" class="font-size-large">Due date: <input type="date" required class="black font-size-large aTDueDate"></label>
     <label for="" class="font-size-large">Priority: 
       <label for=""><input type="radio" name="priority" value="high" required> High </label>
       <label for=""><input type="radio" name="priority" value="medium" checked="checked"> Medium </label>
@@ -169,6 +170,13 @@ function renderAddTodo() {
     let btnAddTodo = document.querySelector(".form-todo");
     btnAddTodo.addEventListener("submit", () => {
         console.log("clicked");
+
+        let title = document.querySelector(".aTTitle");
+        let details = document.querySelector(".aTDetails");
+        let project = document.querySelector(".aTProject");
+        let dueDate = document.querySelector(".aTDueDate");
+        let priority = document.querySelector(".aTPriority");
+
     });
 }
 
