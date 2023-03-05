@@ -177,6 +177,22 @@ function renderAddTodo() {
         let dueDate = document.querySelector(".aTDueDate");
         let priority = document.querySelector(".aTPriority");
 
+        // document.querySelector("input[name="rate"]:checked").value;
+
+
+
+        // let btnSubmit = document.querySelector(".btn-submit");
+
+        //     btnSubmit.addEventListener('click', () => {
+        //     let inputDate = document.querySelector(".aTDueDate");
+        //     let p = document.querySelector(".para");
+        //     let p2 = document.querySelector(".para2");
+            
+        //     p.textContent = inputDate.value.replaceAll("-", "/");
+        //     let dueDate = new Date(inputDate.value.replaceAll("-", "/"));
+        //     p2.textContent = dueDate.toDateString();
+});
+
     });
 }
 
