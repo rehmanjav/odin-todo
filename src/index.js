@@ -191,7 +191,7 @@ function renderAddTodo() {
         //     p.textContent = inputDate.value.replaceAll("-", "/");
         //     let dueDate = new Date(inputDate.value.replaceAll("-", "/"));
         //     p2.textContent = dueDate.toDateString();
-});
+                // });
 
     });
 }
