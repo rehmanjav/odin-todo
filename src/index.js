@@ -130,6 +130,7 @@ function renderIndex() {
     let navHome = document.querySelector(".nav-home");
     navHome.addEventListener('click', () => {
         console.log("clicked home");
+        renderHome("recentFirst");
     });
 }
 
@@ -288,6 +289,19 @@ function renderNotes(order) {
             renderNotes("recentFirst");
         });
     });
+}
+
+function renderHome(order) {
+    let mainDiv = document.querySelector("main");
+    mainDiv.innerHTML = `
+    <div class="home-btns"></div>
+    <div class="home-container"></div>
+    `;
+
+    let homeContainer = document.querySelector(".home-container");
+
+
+
 }
 
 function generateProjectSelection() {
