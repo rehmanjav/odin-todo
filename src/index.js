@@ -1,12 +1,13 @@
 import './style.css';
 
 class Todo {
-    constructor(title, description, dueDate, priority, dateCreated) {
+    constructor(title, details, project, dueDate, priority, dateCreated) {
         this.title = title;
-        this.description = description;
+        this.details = details;
         this.dueDate = dueDate;
         this.priority = priority;
         this.dateCreated = dateCreated;
+        this.project = project;
     }
 }
 
@@ -27,6 +28,7 @@ class Note {
 
 let projects = [new Project("Gym", new Date()), new Project("Study", new Date()), new Project("Work", new Date()), new Project("Diet", new Date())];
 let notes = [];
+let todos = [];
 
 function renderIndex() {
     let body = document.querySelector('body');
@@ -36,7 +38,7 @@ function renderIndex() {
         <p>todo</p>
     </header>
     <nav>
-        <button>Home</button>
+        <button class="nav-home">Home</button>
         <br>
         <button>Today</button>
         <br>
@@ -124,6 +126,11 @@ function renderIndex() {
     navNotes.addEventListener("click", () => {
         renderNotes("recentFirst");
     });
+
+    let navHome = document.querySelector(".nav-home");
+    navHome.addEventListener('click', () => {
+        console.log("clicked home");
+    });
 }
 
 function renderNavProjects() {
@@ -169,29 +176,20 @@ function renderAddTodo() {
 
     let btnAddTodo = document.querySelector(".form-todo");
     btnAddTodo.addEventListener("submit", () => {
-        console.log("clicked");
 
-        let title = document.querySelector(".aTTitle");
-        let details = document.querySelector(".aTDetails");
-        let project = document.querySelector(".aTProject");
-        let dueDate = document.querySelector(".aTDueDate");
-        let priority = document.querySelector(".aTPriority");
+        let title = document.querySelector(".aTTitle").value;
+        let details = document.querySelector(".aTDetails").value;
+        let project = document.querySelector(".aTProject").value;
+        let inputDate = document.querySelector(".aTDueDate");
+        let dueDate = new Date(inputDate.value.replaceAll("-", "/"));
+        let priority = document.querySelector('input[name="priority"]:checked').value;
 
-        // document.querySelector("input[name="rate"]:checked").value;
+        console.log({title: title, details: details, project: project, dueDate: dueDate.toDateString(), priority: priority});
 
+        todos.push(new Todo(title, details, project, dueDate, priority, new Date()));
 
+        renderAddTodo();
 
-        // let btnSubmit = document.querySelector(".btn-submit");
-
-        //     btnSubmit.addEventListener('click', () => {
-        //     let inputDate = document.querySelector(".aTDueDate");
-        //     let p = document.querySelector(".para");
-        //     let p2 = document.querySelector(".para2");
-            
-        //     p.textContent = inputDate.value.replaceAll("-", "/");
-        //     let dueDate = new Date(inputDate.value.replaceAll("-", "/"));
-        //     p2.textContent = dueDate.toDateString();
-                // });
 
     });
 }
