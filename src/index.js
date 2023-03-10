@@ -8,6 +8,8 @@ class Todo {
         this.priority = priority;
         this.dateCreated = dateCreated;
         this.project = project;
+        this.uuid = crypto.randomUUID();
+        this.complete = false;
     }
 }
 
@@ -23,6 +25,7 @@ class Note {
         this.title = title;
         this.description = description;
         this.dateCreated = dateCreated;
+        this.uuid = crypto.randomUUID();
     }
 }
 
@@ -32,7 +35,7 @@ let todos = [];
 
 function renderIndex() {
     let body = document.querySelector('body');
-    
+
     body.innerHTML = `
     <header>
         <p>todo</p>
@@ -87,20 +90,20 @@ function renderIndex() {
     var span = document.querySelector(".close");
 
     // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-    modal.style.display = "block";
+    btn.onclick = function () {
+        modal.style.display = "block";
     }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-    modal.style.display = "none";
+    span.onclick = function () {
+        modal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 
     // Add event listeners to add new XXX buttons
@@ -185,11 +188,12 @@ function renderAddTodo() {
         let dueDate = new Date(inputDate.value.replaceAll("-", "/"));
         let priority = document.querySelector('input[name="priority"]:checked').value;
 
-        console.log({title: title, details: details, project: project, dueDate: dueDate.toDateString(), priority: priority});
+        console.log({ title: title, details: details, project: project, dueDate: dueDate.toDateString(), priority: priority });
 
         todos.push(new Todo(title, details, project, dueDate, priority, new Date()));
 
         renderAddTodo();
+        renderHome("recentFirst");
 
 
     });
@@ -221,8 +225,9 @@ function renderAddNote() {
         let title = document.querySelector(".aNTitle");
         let details = document.querySelector(".aNDetails");
 
-        console.log(`title:${title.value}, details:${details.value}`);
+
         notes.push(new Note(title.value, details.value, new Date()));
+
         renderNotes("recentFirst");
         renderAddNote();
     });
@@ -257,7 +262,7 @@ function renderAddProject() {
         renderAddProject();
     });
 
-    
+
 }
 
 function renderNotes(order) {
@@ -300,6 +305,20 @@ function renderHome(order) {
 
     let homeContainer = document.querySelector(".home-container");
 
+    if (order == "recentFirst") {
+        todos.sort(sortDateRecentFirst);
+
+        for (let todo of todos) {
+            homeContainer.appendChild(generateTodoCard(todo));
+        }
+    } else if (order == "farFirst") {
+        todos.sort(sortDateFarFirst);
+
+        for (let todo of todos) {
+            homeContainer.appendChild(generateTodoCard(todo));
+        }
+    }
+
 
 
 }
@@ -329,16 +348,34 @@ function generateNotesCard(note, index) {
 }
 
 function sortDateRecentFirst(a, b) {
-	if (a.dueDate < b.dueDate) {return -1;};
-    if (a.dueDate > b.dueDate) {return 1;};
+    if (a.dueDate < b.dueDate) { return -1; };
+    if (a.dueDate > b.dueDate) { return 1; };
     return 0;
 };
 
 function sortDateFarFirst(a, b) {
-	if (a.dueDate > b.dueDate) {return -1;};
-    if (a.dueDate < b.dueDate) {return 1;};
+    if (a.dueDate > b.dueDate) { return -1; };
+    if (a.dueDate < b.dueDate) { return 1; };
     return 0;
 };
+
+function generateTodoCard(todo) {
+    let todoCard = document.createElement("div");
+
+    todoCard.innerHTML = `
+    <input type="checkbox" data-uuid="${todo.uuid}">
+    <p>${todo.title}</p>
+    <button data-uuid="${todo.uuid}">Details</button>
+    <p>${todo.dueDate.toDateString()}</p>
+    <button data-uuid="${todo.uuid}">edit</button>
+    <button data-uuid="${todo.uuid}">Trash</button>
+    `;
+
+    todoCard.classList.add("todo-card");
+    todoCard.dataset.uuid = todo.uuid;
+
+    return todoCard;
+}
 
 // MAIN LOOP
 
