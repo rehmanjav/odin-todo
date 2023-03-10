@@ -328,6 +328,18 @@ function generateNotesCard(note, index) {
     return noteCard;
 }
 
+function sortDateRecentFirst(a, b) {
+	if (a.dueDate < b.dueDate) {return -1;};
+    if (a.dueDate > b.dueDate) {return 1;};
+    return 0;
+};
+
+function sortDateFarFirst(a, b) {
+	if (a.dueDate > b.dueDate) {return -1;};
+    if (a.dueDate < b.dueDate) {return 1;};
+    return 0;
+};
+
 // MAIN LOOP
 
 
