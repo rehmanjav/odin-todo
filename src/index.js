@@ -319,6 +319,19 @@ function renderHome(order) {
         }
     }
 
+    let btnsDeleteTodo = document.querySelectorAll(".btn-delete-todo");
+    btnsDeleteTodo.forEach(todo => {
+        todo.addEventListener('click', (e) => {
+            let index = todos.findIndex((todo) => {
+                if (todo.uuid == e.target.dataset.uuid) {
+                    return true
+                }
+                return false;
+            });
+            todos.splice(index, 1);
+            renderHome("recentFirst");
+        });
+    });
 
 
 }
@@ -368,7 +381,7 @@ function generateTodoCard(todo) {
     <button data-uuid="${todo.uuid}">Details</button>
     <p>${todo.dueDate.toDateString()}</p>
     <button data-uuid="${todo.uuid}">edit</button>
-    <button data-uuid="${todo.uuid}">Trash</button>
+    <button class="btn-delete-todo" data-uuid="${todo.uuid}">Trash</button>
     `;
 
     todoCard.classList.add("todo-card");
