@@ -102,11 +102,17 @@ function renderIndex() {
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
+    // window.onclick = function (event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // }
+
+    window.addEventListener('click', (e) => {
+        if (e.target == modal) {
             modal.style.display = "none";
         }
-    }
+    });
 
     // Add event listeners to add new XXX buttons
     let btnTodo = document.querySelector(".btn-todo");
@@ -360,6 +366,61 @@ function renderDetailsModal(title, details, project, dueDate, priority) {
         project,
         dueDate,
         priority,
+    });
+
+    let body = document.querySelector("body");
+
+    let detailsModalDiv = document.createElement("div");
+    detailsModalDiv.classList.add("details-modal");
+
+    detailsModalDiv.innerHTML = `
+    <!-- Modal content -->
+  <div class="details-modal-content">
+    <div class="details-modal-header">
+      <span class="details-close">&times;</span>
+      <h2>${title}</h2>
+    </div>
+    <div class="details-modal-body">
+      <p>Project: ${project}</p>
+      <p>Priority: ${priority}</p>
+      <p>Due Date: ${dueDate.toDateString()}</p>
+      <p>Details: ${details}</p>
+    </div>
+    <div class="details-modal-footer">
+    <h3></h3>
+    </div>
+  </div>
+</div>
+    `;
+
+    body.appendChild(detailsModalDiv);
+
+    // Get the modal
+    var modalDetails = document.querySelector(".details-modal");
+ 
+    // Get the <span> element that closes the modal
+    var span = document.querySelector(".details-close");
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        console.log("dleete cliekced");
+    let detailsModalDiv = document.querySelector(".details-modal");
+    detailsModalDiv.remove();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    // window.onclick = function(event) {
+    // if (event.target == modalDetails) {
+    //     let detailsModalDiv = document.querySelector(".details-modal");
+    //     detailsModalDiv.remove();
+    // }
+    // }
+
+    window.addEventListener('click', (e) => {
+        if (e.target == modalDetails) {
+            let detailsModalDiv = document.querySelector(".details-modal");
+            detailsModalDiv.remove();
+        }
     });
 
 }
