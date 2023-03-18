@@ -31,7 +31,9 @@ class Note {
 
 let projects = [new Project("Gym", new Date()), new Project("Study", new Date()), new Project("Work", new Date()), new Project("Diet", new Date())];
 let notes = [];
-let todos = [];
+let todos = [new Todo("todo 1", "This is my first todo.", "Gym", new Date("2023/10/12"), "high", new Date()), 
+             new Todo("todo 2", "This is my second todo.", "Study", new Date("2024/01/01"), "medium", new Date()), 
+             new Todo("todo 3", "This is my third todo.", "Diet", new Date("2023/08/30"), "low", new Date())];
 
 function renderIndex() {
     let body = document.querySelector('body');
@@ -135,6 +137,8 @@ function renderIndex() {
         console.log("clicked home");
         renderHome("recentFirst");
     });
+
+    renderHome("recentFirst");
 }
 
 function renderNavProjects() {
@@ -333,6 +337,30 @@ function renderHome(order) {
         });
     });
 
+    let btnsDetailsTodo = document.querySelectorAll(".btn-todo-details");
+    btnsDetailsTodo.forEach(todo => {
+        todo.addEventListener('click', (e) => {
+            let index = todos.findIndex((todo) => {
+                if (todo.uuid == e.target.dataset.uuid) {
+                    return true
+                }
+                return false;
+            });
+            renderDetailsModal(todos[index].title, todos[index].details, todos[index].project, todos[index].dueDate, todos[index].priority);
+        });
+    });
+
+
+}
+
+function renderDetailsModal(title, details, project, dueDate, priority) {
+    console.log({
+        title,
+        details,
+        project,
+        dueDate,
+        priority,
+    });
 
 }
 
@@ -378,7 +406,7 @@ function generateTodoCard(todo) {
     todoCard.innerHTML = `
     <input type="checkbox" data-uuid="${todo.uuid}">
     <p>${todo.title}</p>
-    <button data-uuid="${todo.uuid}">Details</button>
+    <button data-uuid="${todo.uuid}" class="btn-todo-details">Details</button>
     <p>${todo.dueDate.toDateString()}</p>
     <button data-uuid="${todo.uuid}">edit</button>
     <button class="btn-delete-todo" data-uuid="${todo.uuid}">Trash</button>
