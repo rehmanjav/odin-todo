@@ -352,14 +352,14 @@ function renderHome(order) {
                 }
                 return false;
             });
-            renderDetailsModal(todos[index].title, todos[index].details, todos[index].project, todos[index].dueDate, todos[index].priority);
+            renderDetailsModal(todos[index].title, todos[index].details, todos[index].project, todos[index].dueDate, todos[index].priority, todos[index].complete);
         });
     });
 
 
 }
 
-function renderDetailsModal(title, details, project, dueDate, priority) {
+function renderDetailsModal(title, details, project, dueDate, priority, complete) {
     console.log({
         title,
         details,
@@ -385,6 +385,7 @@ function renderDetailsModal(title, details, project, dueDate, priority) {
       <p>Priority: ${priority}</p>
       <p>Due Date: ${dueDate.toDateString()}</p>
       <p>Details: ${details}</p>
+      <p>Complete: ${complete}</p>
     </div>
     <div class="details-modal-footer">
     <h3></h3>
