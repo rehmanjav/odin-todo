@@ -356,6 +356,44 @@ function renderHome(order) {
         });
     });
 
+    let checkboxes = document.querySelectorAll("input[type=checkbox]");
+    checkboxes.forEach(todo => {
+        todo.addEventListener('click', (e) => {
+            let index = todos.findIndex((todo) => {
+                if (todo.uuid == e.target.dataset.uuid) {
+                    return true
+                }
+                return false;
+            });
+
+            let uuid = todos[index].uuid;
+
+            if (e.target.checked == true) {
+                console.log("checked", uuid);
+                todos[index].complete = true;
+                let pTitle = document.querySelector(`p[data-uuid='${uuid}']`);
+                if (!pTitle.classList.contains("strikethrough")) {
+                    pTitle.classList.add("strikethrough");
+                }
+                console.log(todos[index].complete)
+            } else {
+                console.log("unchecked", uuid);
+                todos[index].complete = false;
+                let pTitle = document.querySelector(`p[data-uuid='${uuid}']`);
+                if (pTitle.classList.contains("strikethrough")) {
+                    pTitle.classList.remove("strikethrough");
+                }
+                console.log(todos[index].complete)
+            }
+
+
+
+
+
+            console.log(index)
+        });
+    });
+
 
 }
 
@@ -467,7 +505,7 @@ function generateTodoCard(todo) {
 
     todoCard.innerHTML = `
     <input type="checkbox" data-uuid="${todo.uuid}">
-    <p>${todo.title}</p>
+    <p data-uuid="${todo.uuid}">${todo.title}</p>
     <button data-uuid="${todo.uuid}" class="btn-todo-details">Details</button>
     <p>${todo.dueDate.toDateString()}</p>
     <button data-uuid="${todo.uuid}">edit</button>
